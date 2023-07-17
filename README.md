@@ -1,10 +1,10 @@
-<h1>Learning PHP, MySQL & JavaScript (with PHP 8 &amp; MySQL 8, React &amp; Node.js) 7th Edition</h1>
+<h1>Learning PHP, MySQL & JavaScript (with PHP &amp; MySQL 8, React &amp; Node.js) 7th Edition</h1>
 
 <h2>Thanks for downloading these examples</h2>
 
 🔴 <b>The examples for earlier editions are in <i>lpmj1examples.zip</i> through <i>lpmj6examples.zip</i> 🔴
 
-</b><p>All the files are in the folders named <i>03</i> through <i>24</i> and <i>sup_01</i> through <i>sup_07</i> of this archive, according to the chapters from which they are taken. You will need a web server installed (such as <a href='http://ampps.com/'>Ampps</a>) to run many of the examples - please see <i>Chapter 2</i> for full details.</p>
+</b><p>All the files are in the folders of this archive named <i>03</i> through <i>24</i> (and <i>sup_01</i> through <i>sup_07</i>, which contain supplemental chapters in PDF form along with associated example files), according to the chapters from which they are taken. You will need a web server installed (such as <a href='http://ampps.com/'>Ampps</a>) to run many of the examples - please see <i>Chapter 2</i> for full details.</p>
 
 <p>As well as being saved in their chapter number folder, the Robin's Nest example files are also in the folder <i>robinsnest</i>, so that you can copy the folder to a web server to try for yourself. Please read the final chapter for details on setting up the database etc. All the other information you need to run, understand and modify these examples can be found in the book.</p>
 
