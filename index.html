@@ -5,41 +5,59 @@
     <title>LEARNING PHP, MYSQL & JAVASCRIPT 7th Edition</title>
     <style>
       body {
-        width      :616px;
-        text-align :justify;
-        margin-left:40px;
+        width      : 616px;
+        text-align : justify;
+        margin-left: 40px;
+        background : black;
+        color      : white;
+      }
+      a, a:visited {
+        color      : lightblue;
+      }
+      i {
+        color      : #eaa;
       }
       .mono {
         font-family:monospace;
-        font-size  :12pt;
+        font-size  : 12pt;
       }
     </style>
   </head>
   <body>
-    <h1>Learning PHP, MySQL & JavaScript<br>(with PHP MySQL 8, React &amp; Node.js)<br>7th Edition</h1>
+    <h1>Learning PHP, MySQL & JavaScript<br>(with PHP &amp; MySQL 8, React &amp; Node.js)<br>7th Edition</h1>
 
     <h2>Thanks for downloading these examples</h2>
 
-    <p>All the files are in the folders named <i>3</i> through <i>24</i> of this archive, according to the chapters from which they are taken. Additionally, there are seven supplemental chapters stored in accompanying examples folders named <i>sup_01</i> through <i>sup_07</i>. The chapters are saved as PDF files. You will need a web server installed (such as <a href='http://ampps.com/'>Ampps</a>) to run many of the examples - please see Chapter 2 for full details.</p>
+    <p>All the files are in the folders named <i><b>03</b></i> through <i><b>24</b></i> of this archive, according to the chapters from which they are taken. Additionally, there are seven supplemental chapters stored in accompanying folders named <i><b>sup_01</b></i> through <i><b>sup_07</b></i>. You will need a web server installed (such as <a href='http://ampps.com/'>Ampps</a>) to run many of the examples - please see Chapter 2 of the book for full details.</p>
 
-    <p>As well as being saved in their chapter number folder, the Robin's Nest example files are also in the folder <i>robinsnest</i>, so that you can copy the folder to a web server to try for yourself. Please read the final chapter for details on setting up the database etc. All the other information you need to run, understand and modify these examples can be found in the book.</p>
+    <p>As well as being saved in their chapter number folder, the Robin's Nest example files are also in the folder <i><b>robinsnest</b></i>, so that you can copy the folder to a web server to try for yourself. Please read the final chapter for details on setting up the database etc. All the other information you need to run, understand and modify these examples can be found in the book.</p>
 
-    <p>For the latest news on this book, including any errata that have been discovered since its publication (and any updates to these files), please <a href='https://oreil.ly/learning-php-mysql-js-7e'>visit the O'Reilly web page</a>.
+     <p>You can read the supplemental chapters by opening the PDF files provided in folders <i><b>sup_01</b></i> to <i><b>sup_07</b></i> or, if your browser supports displaying PDF files, you can click the following links:</p>
+    
+    <ol>
+      <li><a href='sup_01/Sup_01 - Introduction to CSS.pdf'>          Introduction to CSS</a></li>
+      <li><a href='sup_02/Sup_02 - Introduction to jQuery.pdf'>       Introduction to jQuery</a></li>
+      <li><a href='sup_03/Sup_03 - Introduction to jQuery Mobile.pdf'>Introduction to jQuery Mobile</a></li>
+      <li><a href='sup_04/Sup_04 - Introduction to HTML5.pdf'>        Introduction to HTML5</a></li>
+      <li><a href='sup_05/Sup_05 - The HTML5 Canvas.pdf'>             The HTML5 Canvas</a></li>
+      <li><a href='sup_06/Sup_06 - HTML5 Audio and Video.pdf'>        HTML5 Audio and Video.</a></li>
+      <li><a href='sup_07/Sup_07 - Other HTML5 Features.pdf'>         Other HTML5 Features</a></li>
+    </ol>
+
+   <p>For the latest news on this book, including any errata that have been discovered since its publication (and any updates to these files), please <a href='https://oreil.ly/learning-php-mysql-js-7e'>visit the O'Reilly web page</a>.
+
+    <p><b>Tip</b>: Once you have a web server set up, copy the entire structure of folders and subfolders into your document root directory, and you'll easily be able to navigate through them by typing <span class='mono'>localhost</span> into your web browser. The <i><b>robinsnest</b></i> folder link will issue errors when clicked unless you have previously created both a MySQL user and database called <i><b>robinsnest</b></i>, and run the <i><b>setup.php</b></i> program in this folder, as outlined in Chapter 23.</p>
 
     <pre style='font-family:monospace; font-size:12pt'>
       Directory listing
 
-              <a href='08'>08</a>      <a href='15'>15</a>      <a href='22'>22</a>      <a href='sup_06'>sup_06</a>
-              <a href='09'>09</a>      <a href='16'>16</a>      <a href='23'>23</a>      <a href='sup_07'>sup_07</a>
+      <i style='color:grey'>--</i>      <a href='08'>08</a>      <a href='15'>15</a>      <a href='22'>22</a>      <a href='sup_06'>sup_06</a>
+      <i style='color:grey'>--</i>      <a href='09'>09</a>      <a href='16'>16</a>      <a href='23'>23</a>      <a href='sup_07'>sup_07</a>
       <a href='03'>03</a>      <a href='10'>10</a>      <a href='17'>17</a>      <a href='sup_01'>sup_01</a>  <a href='robinsnest'>robinsnest</a> <i style='font-size:10pt'>(See the Note below)</i>
       <a href='04'>04</a>      <a href='11'>11</a>      <a href='18'>18</a>      <a href='sup_02'>sup_02</a>  
       <a href='05'>05</a>      <a href='12'>12</a>      <a href='19'>19</a>      <a href='sup_03'>sup_03</a>
       <a href='06'>06</a>      <a href='13'>13</a>      <a href='20'>20</a>      <a href='sup_04'>sup_04</a>
       <a href='07'>07</a>      <a href='14'>14</a>      <a href='21'>21</a>      <a href='sup_05'>sup_05</a>   
     </pre>
-
-    <p><b>Tip</b>: Once you have a web server set up, copy the entire <i>examples</i> structure of folders and subfolders into your document root directory, and you'll easily be able to navigate through them by typing <i>localhost</i> into your web browser.
-    
-    <p><b>Note</b>: The <i>robinsnest</i> folder link will issue errors when clicked unless you have previously created both a MySQL user and database called <i>robinsnest</i>, and run the <i>setup.php</i> program in this folder, as outlined in Chapter24.</p>
   </body>
 </html>
