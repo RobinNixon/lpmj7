@@ -14,4 +14,4 @@
 
 <p>Once you have a web server set up, copy the entire structure of folders and subfolders into your document root directory by downloading and extracting <i>lpmj7examples.zip</i> from this repo, and you'll easily be able to navigate through all the examples by typing <i>localhost</i> into your web browser.
     
-<p><b>Note</b>: The <i>robinsnest</i> folder link will issue errors when clicked unless you have previously created both a MySQL user and database called <i>robinsnest</i>, and run the <i>setup.php</i> program in this folder, as outlined in Chapter 24.</p>
+<p><b>Note</b>: The <i>robinsnest</i> folder link will issue errors when clicked unless you have previously created both a MySQL user and database called <i>robinsnest</i>, and run the <i>setup.php</i> program in this folder, as outlined in Chapter 23.</p>
