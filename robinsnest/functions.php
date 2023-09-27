@@ -46,16 +46,19 @@
   function sanitizeString($var)
   {
     global $pdo;
+
     $var = strip_tags($var);
     $var = htmlentities($var);
-    if (get_magic_quotes_gpc())
-      $var = stripslashes($var);
+    $var = stripslashes($var);
+
     $result = $pdo->quote($var);          // This adds single quotes
     return str_replace("'", "", $result); // So now remove them
   }
 
   function showProfile($user)
   {
+    global $pdo;
+
     if (file_exists("$user.jpg"))
       echo "<img src='$user.jpg' style='float:left;'>";
 
