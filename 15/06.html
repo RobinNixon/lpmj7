@@ -1,7 +1,16 @@
 <script>
-  a = 7; b = 11
-  if (a > b)  document.write("a is greater than b<br>")
-  if (a < b)  document.write("a is less than b<br>")
-  if (a >= b) document.write("a is greater than or equal to b<br>")
-  if (a <= b) document.write("a is less than or equal to b<br>")
+  function User(forename, username, password)
+  {
+    this.forename = forename
+    this.username = username
+    this.password = password
+    this.showUser = showUser
+  }
+
+  function showUser()
+  {
+    document.write("Forename: " + this.forename + "<br>")
+    document.write("Username: " + this.username + "<br>")
+    document.write("Password: " + this.password + "<br>")
+  }
 </script>

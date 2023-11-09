@@ -1,26 +1,61 @@
 <!DOCTYPE html>
-<html> <!-- urlpost.html -->
+<html> <!-- borderradius.html -->
   <head>
-    <title>Asynchronous Communication Example</title>
+    <title>CSS3 Border Radius Examples</title>
+    <style>
+      .box {
+        margin-bottom:10px;   
+        font-family  :'Courier New', monospace;
+        font-size    :12pt;
+        text-align   :center;
+        padding      :10px;
+        width        :380px;
+        height       :75px;
+        border       :10px solid #006;
+      }
+      .b1 {
+        -moz-border-radius   :40px;
+        -webkit-border-radius:40px;
+        border-radius        :40px;
+      }
+      .b2 {
+        border-radius        :40px 40px 20px 20px;
+      }
+      .b3 {
+        border-top-left-radius            :20px;
+        border-top-right-radius           :40px;
+        border-bottom-left-radius         :60px;
+        border-bottom-right-radius        :80px;
+      }
+      .b4 {
+        border-top-left-radius            :40px 20px;
+        border-top-right-radius           :40px 20px;
+        border-bottom-left-radius         :20px 40px;
+        border-bottom-right-radius        :20px 40px;
+      }
+    </style>
   </head>
-  <body style='text-align:center'>
-    <h1>Loading a web page into a DIV</h1>
-    <div id='info'>This sentence will be replaced</div>
+  <body>
+    <div class='box b1'>
+      border-radius:40px;
+    </div>
 
-    <script>
-      let XHR = new XMLHttpRequest()
+    <div class='box b2'>
+      border-radius:40px 40px 20px 20px;
+    </div>
 
-      XHR.open("POST", "http://127.0.0.1/18/urlpost.php", true)
-      XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-      XHR.send("url=news.com")
+    <div class='box b3'>
+      border-top-left-radius &nbsp;&nbsp;&nbsp;:20px;<br>
+      border-top-right-radius &nbsp;&nbsp;:40px;<br>
+      border-bottom-left-radius :60px;<br>
+      border-bottom-right-radius:80px;
+    </div>
 
-      XHR.onreadystatechange = function()
-      {
-        if (this.readyState == 4 && this.status == 200)
-        {
-          document.getElementById("info").innerHTML = this.responseText
-        }
-      }      
-    </script>
+    <div class='box b4'>
+      border-top-left-radius &nbsp;&nbsp;&nbsp;:40px 20px;<br>
+      border-top-right-radius &nbsp;&nbsp;:40px 20px;<br>
+      border-bottom-left-radius :20px 40px;<br>
+      border-bottom-right-radius:20px 40px;
+    </div>
   </body>
 </html>

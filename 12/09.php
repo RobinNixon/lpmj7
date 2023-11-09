@@ -1,16 +1,8 @@
-<?php
-  function sanitizeString($var)
-  {
-    $var = stripslashes($var);
-    $var = strip_tags($var);
-    $var = htmlentities($var);
-    return $var;
-  }
+<?php // sessiontest.php
+  session_start();
 
-  function sanitizeMySQL($pdo, $var)
-  {
-    $var = $pdo->quote($var);
-    $var = sanitizeString($var);
-    return $var;
-  }
+  if (!isset($_SESSION['count'])) $_SESSION['count'] = 0; 
+  else ++$_SESSION['count']; 
+
+  echo $_SESSION['count'];
 ?>

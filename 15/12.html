@@ -1,10 +1,7 @@
 <script>
-  try
-  {
-    request = new XMLHTTPRequest()
-  }
-  catch(err)
-  {
-    // Use a different method to create an XML HTTP Request object
-  }
+  pets = ["Cat", "Dog", "Rabbit", "Hamster"]
+
+  document.write(pets.join()      + "<br>")
+  document.write(pets.join(' ')   + "<br>")
+  document.write(pets.join(' : ') + "<br>")
 </script>

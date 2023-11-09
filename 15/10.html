@@ -1,9 +1,23 @@
 <script>
-  string = "The quick brown fox jumps over the lazy dog"
+  checkerboard = Array(
+    Array(' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'),
+    Array('o', ' ', 'o', ' ', 'o', ' ', 'o', ' '),
+    Array(' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'),
+    Array(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '),
+    Array(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '),
+    Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '),
+    Array(' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'),
+    Array('O', ' ', 'O', ' ', 'O', ' ', 'O', ' '))
 
-  with (string)
+  document.write("<pre>")
+
+  for (j = 0 ; j < 8 ; ++j)
   {
-    document.write("The string is " + length + " characters<br>")
-    document.write("In upper case it's: " + toUpperCase())
+    for (k = 0 ; k < 8 ; ++k)
+      document.write(checkerboard[j][k] + " ")
+
+    document.write("<br>")
   }
+
+  document.write("</pre>")
 </script>

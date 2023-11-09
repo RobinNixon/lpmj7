@@ -1,20 +1,19 @@
-<?php // formtest2.php
-  if (!empty(($_POST['name']))) $name = $_POST['name'];
-  else $name = "(Not Entered)";
+<?php
+  $username = 'admin';
+  $password = 'letmein';
 
-  echo <<<_END
-  <html>
-    <head>
-      <title>Form Test</title>
-    </head>
-    <body>
-    Your name is: $name<br>
-    <form method="post" action="formtest2.php">
-      What is your name?
-      <input type="text" name="name">
-      <input type="submit">
-    </form>
-    </body>
-  </html>
-_END;
+  if (isset($_SERVER['PHP_AUTH_USER']) &&
+      isset($_SERVER['PHP_AUTH_PW']))
+  {
+    if ($_SERVER['PHP_AUTH_USER'] === $username &&
+        $_SERVER['PHP_AUTH_PW']   === $password)
+          echo "You are now logged in";
+    else die("Invalid username/password combination");
+  }
+  else
+  {
+    header('WWW-Authenticate: Basic realm="Restricted Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    die ("Please enter your username and password");
+  }
 ?>

@@ -1,15 +1,10 @@
 <script>
-  onerror = errorHandler
-  document.writ("Welcome to this website") // Deliberate error
+  pets = ["Cat", "Dog", "Rabbit", "Hamster"]
+  pets.forEach(output)
 
-  function errorHandler(message, url, line)
+  function output(element, index, array)
   {
-    out  = "Sorry, an error was encountered.\n\n";
-    out += "Error: " + message + "\n";
-    out += "URL: "   + url     + "\n";
-    out += "Line: "  + line    + "\n\n";
-    out += "Click OK to continue.\n\n";
-    alert(out);
-    return true;
+    document.write("Element at index " + index + " has the value " +
+      element + "<br>")
   }
 </script>

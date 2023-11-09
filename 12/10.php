@@ -1,46 +1,14 @@
-<?php // convert.php
-  $f = $c = '';
+<?php
+  session_start();
 
-  if (isset($_POST['f'])) $f = sanitizeString($_POST['f']);
-  if (isset($_POST['c'])) $c = sanitizeString($_POST['c']);
-
-  if (is_numeric($f))
+  if (!isset($_SESSION['initiated']))
   {
-    $c = intval((5 / 9) * ($f - 32));
-    $out = "$f &deg;f equals $c &deg;c";
+    session_regenerate_id();
+    $_SESSION['initiated'] = 1; 
   }
-  elseif(is_numeric($c))
-  {
-    $f = intval((9 / 5) * $c + 32);
-    $out = "$c &deg;c equals $f &deg;f";
-  }
-  else $out = "";
 
-  echo <<<_END
-<html>
-  <head>
-    <title>Temperature Converter</title>
-  </head>
-  <body>
-    <pre>
-      Enter either Fahrenheit or Celsius and click on Convert
-        
-      <b>$out</b>
-      <form method="post" action="convert.php">
-        Fahrenheit <input type="text" name="f" size="7">
-           Celsius <input type="text" name="c" size="7">
-                   <input type="submit" value="Convert">
-      </form>
-    </pre>
-  </body>
-</html>
-_END;
+  if (!isset($_SESSION['count'])) $_SESSION['count'] = 0; 
+  else ++$_SESSION['count'];
 
-function sanitizeString($var)
-{
-  $var = stripslashes($var);
-	$var = htmlentities($var);
-	$var = strip_tags($var);
-	return $var;
-}
+  echo $_SESSION['count'];
 ?>

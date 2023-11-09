@@ -1,15 +1,16 @@
 <?php
-  require_once 'login.php';
-
-  try
+  function sanitizeString($var)
   {
-    $pdo = new PDO($attr, $user, $pass, $opts);
-  }
-  catch (PDOException $e)
-  {
-    throw new PDOException($e->getMessage(), (int)$e->getCode());
+    $var = stripslashes($var);
+    $var = strip_tags($var);
+    $var = htmlentities($var);
+    return $var;
   }
 
-  $query  = "DROP TABLE cats";
-  $result = $pdo->query($query);
+  function sanitizeMySQL($pdo, $var)
+  {
+    $var = $pdo->quote($var);
+    $var = sanitizeString($var);
+    return $var;
+  }
 ?>
