@@ -21,7 +21,7 @@
   <li><a href="sup_08/Sup_08 - What's New in PHP 9 & MySQL 9.pdf">  What's New in PHP 9 & MySQL 9</a></li>
 </ol>
 
-<p>For the latest news on this book, including any errata that have been discovered since its publication (and any updates to these files), please <a href='https://oreil.ly/learning-php-mysql-js-7e'>visit the O'Reilly page</a>.
+<p>For the latest news on this book, including any errata that have been discovered since its publication (and any updates to these files), please <a href='[https://oreil.ly/learning-php-mysql-js-7e](https://www.oreilly.com/library/view/learning-php-mysql/9781098152345/)'>visit the O'Reilly page</a>.
 
 <p>To read the examples as you work through the book you can view them here in a folder structure matching the chapters in the book.</p>
 
