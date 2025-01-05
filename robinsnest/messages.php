@@ -1,78 +1,81 @@
 <?php // Example 11: messages.php
   require_once 'header.php';
-  
-  if (!$loggedin) die("</div></body></html>");
 
-  if (isset($_GET['view'])) $view = sanitizeString($_GET['view']);
-  else                      $view = $user;
+  if (!$loggedin)
+    die("</div></body></html>");
+  $user = $_SESSION['user'];
 
-  if (isset($_POST['text']))
-  {
-    $text = sanitizeString($_POST['text']);
+  if (isset($_GET['view'])) {
+    $view = $_GET['view'];
+  } else {
+    $view = $user;
+  }
+  $view_html_entities = htmlentities($view);
 
-    if ($text != "")
-    {
-      $pm   = substr(sanitizeString($_POST['pm']),0,1);
-      $time = time();
-      queryMysql("INSERT INTO messages VALUES(NULL, '$user',
-        '$view', '$pm', $time, '$text')");
-    }
+  if (isset($_POST['text']) && $_POST['text'] !== "") {
+    $stmt = $pdo->prepare('INSERT INTO messages VALUES(NULL, ?, ?, ?, ?, ?)');
+    $stmt->execute([$user, $view, (int)$_POST['pm'], time(), $_POST['text']]);
   }
 
-  if ($view != "")
-  {
-    if ($view == $user) $name1 = $name2 = "Your";
-    else
-    {
-      $name1 = "<a href='members.php?view=$view&r=$randstr'>$view</a>'s";
-      $name2 = "$view's";
+  if ($view !== "") {
+    if ($view === $user)
+      $name1 = $name2 = "Your";
+    else {
+      $name1 = "<a
+        href='members.php?view=$view_html_entities'>$view_html_entities</a>'s";
+      $name2 = "$view_html_entities's";
     }
 
     echo "<h3>$name1 Messages</h3>";
-    showProfile($view);
-    
-    echo <<<_END
-      <form method='post' action='messages.php?view=$view&r=$randstr'>
-        <fieldset data-role="controlgroup" data-type="horizontal">
-          <legend>Type here to leave a message</legend>
-          <input type='radio' name='pm' id='public' value='0' checked='checked'>
+    showProfile($view, $pdo);
+?>
+      <form method="post"
+        action="messages.php?view=<?php echo $view_html_entities; ?>">
+        <p>Type here to leave a message</p>
+        <p>
+          <input type="radio" name="pm" id="public"
+            value="0" checked="checked">
           <label for="public">Public</label>
-          <input type='radio' name='pm' id='private' value='1'>
+          <input type="radio" name="pm" id="private" value="1">
           <label for="private">Private</label>
-        </fieldset>
-      <textarea name='text'></textarea>
-      <input data-transition='slide' type='submit' value='Post Message'>
-    </form><br>
-_END;
-
+        </p>
+        <textarea name="text" cols="50"></textarea>
+        <br>
+        <input type="submit" class="button" value="Post Message">
+      </form><br>
+<?php
     date_default_timezone_set('UTC');
 
-    if (isset($_GET['erase']))
-    {
-      $erase = sanitizeString($_GET['erase']);
-      queryMysql("DELETE FROM messages WHERE id='$erase' AND recip='$user'");
+    if (isset($_GET['erase'])) {
+      $stmt = $pdo->prepare('DELETE FROM messages WHERE id=? AND recip=?');
+      $stmt->execute([(int)$_GET['erase'], $user]);
     }
-    
-    $query  = "SELECT * FROM messages WHERE recip='$view' ORDER BY time DESC";
-    $result = queryMysql($query);
 
-    while ($row = $result->fetch())
-    {
-      if ($row['pm'] == 0 || $row['auth'] == $user || $row['recip'] == $user)
-      {
+    $stmt = $pdo->prepare('SELECT * FROM messages
+      WHERE recip=? ORDER BY time DESC');
+    $stmt->execute([$view]);
+    $num = $stmt->rowCount();
+
+    while ($row = $stmt->fetch()) {
+      $pm = $row['pm'] === '1';
+      $auth_html_entities = htmlentities($row['auth']);
+      $message_html_entities = htmlentities($row['message']);
+      $id_html_entities = htmlentities($row['id']);
+
+      if (!$pm || $row['auth'] === $user || $row['recip'] === $user) {
         echo date('M jS \'y g:ia:', $row['time']);
-        echo " <a href='messages.php?view=" . $row['auth'] .
-             "&r=$randstr'>" . $row['auth']. "</a> ";
+        echo " <a href='messages.php?view=$auth_html_entities'>
+          $auth_html_entities</a> ";
 
-        if ($row['pm'] == 0)
-          echo "wrote: &quot;" . $row['message'] . "&quot; ";
+        if (!$pm)
+          echo "wrote: &quot;$message_html_entities&quot; ";
         else
-          echo "whispered: <span class='whisper'>&quot;" .
-            $row['message']. "&quot;</span> ";
+          echo "whispered: <span class='whisper'>
+            &quot;$message_html_entities&quot;</span> ";
 
-        if ($row['recip'] == $user)
-          echo "[<a href='messages.php?view=$view" .
-               "&erase=" . $row['id'] . "&r=$randstr'>erase</a>]";
+        if ($row['recip'] === $user)
+          echo "[<a href='messages.php?view=$view_html_entities" .
+               "&erase=$id_html_entities'>erase</a>]";
 
         echo "<br>";
       }
@@ -82,10 +85,10 @@ _END;
   if (!$num)
     echo "<br><span class='info'>No messages yet</span><br><br>";
 
-  echo "<br><a data-role='button'
-        href='messages.php?view=$view&r=$randstr'>Refresh messages</a>";
+  echo "<br><a class='button'
+    href='messages.php?view=$view_html_entities'>Refresh messages</a>";
 ?>
 
-    </div><br>
+    </div>
   </body>
 </html>
