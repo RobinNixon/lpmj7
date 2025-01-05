@@ -1,5 +1,5 @@
 <?php
   $month = "March";
 
-  if ($month == "March") echo "It's springtime";
+  if ($month == "April") echo "A quarter of a year has passed";
 ?>

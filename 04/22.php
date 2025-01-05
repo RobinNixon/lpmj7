@@ -1,6 +1,4 @@
 <?php
-  $page = "test";
-
   if     ($page == "Home")  echo "You selected Home";
   elseif ($page == "About") echo "You selected About";
   elseif ($page == "News")  echo "You selected News";

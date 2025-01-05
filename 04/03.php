@@ -4,7 +4,6 @@
 
   echo "a: " . 73      . "<br>"; // Numeric literal
   echo "b: " . "Hello" . "<br>"; // String literal
-  echo "c: " . FALSE   . "<br>"; // Constant literal
-  echo "d: " . $myname . "<br>"; // String variable
-  echo "e: " . $myage  . "<br>"; // Numeric variable
+  echo "c: " . $myname . "<br>"; // String variable
+  echo "d: " . $myage  . "<br>"; // Numeric variable
 ?>

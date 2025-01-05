@@ -1,3 +1,3 @@
 <?php
-  if ($finished == 1 or getnext() == 1) exit;
+  if ($finished == 1 OR getnext() == 1) exit;
 ?>
