@@ -5,8 +5,8 @@
   $system        = "Gridlock";
   $constellation = "Kasterborous";
 
-  $contact = compact('fname', 'sname', 'planet', 'system', 'constellation');
+  $contact = compact('fname', 'sname', 'planet',
+                     'system', 'constellation');
 
   print_r($contact);
 ?>
-

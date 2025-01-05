@@ -5,5 +5,5 @@
   $paper[] = "Photo";
 
   for ($j = 0 ; $j < 4 ; ++$j)
-    echo "$j: $paper[$j]<br>";
+    echo "$j: {$paper[$j]}<br>";
 ?>
