@@ -1,6 +1,6 @@
 <?php
 /* This is a section
-   of multi-line comments
+   of multiline comments
    which will not be
    interpreted */
 ?>
