@@ -1,17 +1,13 @@
 <?php
-  Translate::lookup();
-  
-  class Translate
+  class Example
   {
-    const ENGLISH = 0;
-    const SPANISH = 1;
-    const FRENCH  = 2;
-    const GERMAN  = 3;
-    // ...
+    var $name   = "Michael"; // Same as public but deprecated
+    public $age = 23;        // Public property
+    protected $usercount;    // Protected property
 
-    static function lookup()
+    private function admin() // Private method
     {
-      echo self::SPANISH;
+      // Admin code goes here
     }
   }
 ?>

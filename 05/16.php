@@ -1,10 +1,8 @@
 <?php
-  class User
-  {
-    public $name, $password;
+  $object1       = new User();
+  $object1->name = "Alice";
 
-    function get_password()
-  {
-    return $this->password;
-  }
+  echo $object1->name;
+
+  class User {}
 ?>
