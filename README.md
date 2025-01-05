@@ -18,7 +18,7 @@
   <li><a href='sup_05/Sup_05 - The HTML5 Canvas.pdf'>               The HTML5 Canvas</a></li>
   <li><a href='sup_06/Sup_06 - HTML5 Audio and Video.pdf'>          HTML5 Audio and Video</a></li>
   <li><a href='sup_07/Sup_07 - Other HTML5 Features.pdf'>           Other HTML5 Features</a></li>
-  <li><a href="sup_08/Sup_08 - What's New in PHP 9 & MySQL 9.pdf">  What's New in PHP 9 & MySQL 9</a></li>
+  <li><a href="sup_08/Sup_08 - What's New in PHP 8 & MySQL 8.pdf">  What's New in PHP 8 & MySQL 8</a></li>
 </ol>
 
 <p>For the latest news on this book, including any errata that have been discovered since its publication (and any updates to these files), please <a href='https://www.oreilly.com/library/view/learning-php-mysql/9781098152345/'>visit the O'Reilly page</a>.
