@@ -12,8 +12,4 @@
 
   $query  = "INSERT INTO cats VALUES(NULL, 'Lion', 'Leo', 4)";
   $result = $pdo->query($query);
-  $query = "INSERT INTO cats VALUES(NULL, 'Cougar', 'Growler', 2)";
-  $result = $pdo->query($query);
-  $query = "INSERT INTO cats VALUES(NULL, 'Cheetah', 'Charly', 3)";
-  $result = $pdo->query($query);
 ?>

@@ -12,7 +12,7 @@
 
   if (isset($_POST['delete']) && isset($_POST['isbn']))
   {
-    $isbn   = get_post($pdo, 'isbn');
+    $isbn   = sanitize_post_value($pdo, 'isbn');
     $query  = "DELETE FROM classics WHERE isbn=$isbn";
     $result = $pdo->query($query);
   }
@@ -23,11 +23,11 @@
       isset($_POST['year'])     &&
       isset($_POST['isbn']))
   {
-    $author   = get_post($pdo, 'author');
-    $title    = get_post($pdo, 'title');
-    $category = get_post($pdo, 'category');
-    $year     = get_post($pdo, 'year');
-    $isbn     = get_post($pdo, 'isbn');
+    $author   = sanitize_post_value($pdo, 'author');
+    $title    = sanitize_post_value($pdo, 'title');
+    $category = sanitize_post_value($pdo, 'category');
+    $year     = sanitize_post_value($pdo, 'year');
+    $isbn     = sanitize_post_value($pdo, 'isbn');
     
     $query    = "INSERT INTO classics VALUES" .
       "($author, $title, $category, $year, $isbn)";
@@ -71,7 +71,7 @@ _END;
 _END;
   }
 
-  function get_post($pdo, $var)
+  function sanitize_post_value($pdo, $var)
   {
     return $pdo->quote($_POST[$var]);
   }

@@ -13,7 +13,8 @@
   $query  = "DESCRIBE cats";
   $result = $pdo->query($query);
 
-  echo "<table><tr><th>Column</th><th>Type</th><th>Null</th><th>Key</th></tr>";
+  echo "<table><tr><th>Column</th><th>Type</th>";
+  echo "<th>Null</th><th>Key</th></tr>";
 
   while ($row = $result->fetch(PDO::FETCH_NUM))
   {

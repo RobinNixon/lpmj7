@@ -1,10 +1,10 @@
 <?php // login.php
   $host = 'localhost';    // Change as necessary
-  $data = 'publications'; // Change as necessary
+  $db   = 'publications'; // Change as necessary
   $user = 'root';         // Change as necessary
   $pass = 'mysql';        // Change as necessary
   $chrs = 'utf8mb4';
-  $attr = "mysql:host=$host;dbname=$data;charset=$chrs";
+  $attr = "mysql:host=$host;dbname=$db;charset=$chrs";
   $opts =
   [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
