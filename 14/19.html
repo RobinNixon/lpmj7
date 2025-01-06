@@ -1,6 +1,14 @@
 <script>
-  for (count = 1 ; count <= 12 ; ++count)
+  const haystack = new Array()
+  haystack[17] = "Needle"
+
+  for (let j = 0 ; j < 20 ; ++j)
   {
-    document.write(count + " times 12 is " + count * 12 + "<br>");
+    if (haystack[j] === "Needle")
+    {
+      console.log("- Found at location " + j)
+      break
+    }
+    else console.log(j + ", ")
   }
 </script>
