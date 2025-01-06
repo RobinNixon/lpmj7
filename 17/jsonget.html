@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html> <!-- urlget.html -->
+<html> <!-- jsonget.html -->
   <head>
     <title>Asynchronous Communication Example</title>
     <style>
@@ -7,7 +7,7 @@
     </style>
   </head>
   <body>
-    <h1>Loading a web page into a DIV</h1>
+    <h1 id="header">Loading a web page into a DIV</h1>
     <div id="info">This sentence will be replaced</div>
 
     <script>
@@ -15,9 +15,12 @@
         url: "cnet.com",
         nocache: Math.random() * 1000000
       })
-      fetch("http://localhost/18/urlget.php?" + params)
-        .then(response => response.text())
-        .then(text => document.getElementById("info").innerHTML = text)
+      fetch("http://localhost/18/jsonget.php?" + params)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("header").style.backgroundColor = data.color
+          document.getElementById("info").innerHTML = data.html
+        })
     </script>
   </body>
 </html>
