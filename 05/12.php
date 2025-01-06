@@ -1,8 +1,8 @@
 <?php
-  class User
-  {
-    public $name;
-  }
+  class User
+  {
+    public $name;
+  }
 
   $object1       = new User();
   $object1->name = "Alice";
