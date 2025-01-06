@@ -3,9 +3,9 @@
 
   displayItems("Bananas", 32.3, c)
 
-  function displayItems()
+  function displayItems(...params)
   {
-    for (j = 0 ; j < displayItems.arguments.length ; ++j)
-      document.write(displayItems.arguments[j] + "<br>")
+    for (j = 0 ; j < params.length ; ++j)
+      console.log(params[j])
   }
 </script>

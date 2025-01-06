@@ -1,16 +1,21 @@
 <script>
-  function User(forename, username, password)
-  {
-    this.forename = forename
-    this.username = username
-    this.password = password
-    this.showUser = showUser
-  }
+  class User {
+    constructor(forename, username, timezone) {
+      this.forename = forename
+      this.username = username
+      this.timezone = timezone
+    }
 
-  function showUser()
-  {
-    document.write("Forename: " + this.forename + "<br>")
-    document.write("Username: " + this.username + "<br>")
-    document.write("Password: " + this.password + "<br>")
+    static greeting = "Hello";
+
+    showUser() {
+      console.log("Forename: " + this.forename)
+      console.log("Username: " + this.username)
+      console.log("Timezone: " + this.timezone)
+    }
+
+    static greet(name) {
+      console.log(this.greeting + " " + name)
+    }
   }
 </script>

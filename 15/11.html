@@ -1,10 +1,21 @@
 <script>
-  pets = ["Cat", "Dog", "Rabbit", "Hamster"]
-  pets.forEach(output)
+  checkerboard = [
+    [' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'],
+    ['o', ' ', 'o', ' ', 'o', ' ', 'o', ' '],
+    [' ', 'o', ' ', 'o', ' ', 'o', ' ', 'o'],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+    ['O', ' ', 'O', ' ', 'O', ' ', 'O', ' '],
+    [' ', 'O', ' ', 'O', ' ', 'O', ' ', 'O'],
+    ['O', ' ', 'O', ' ', 'O', ' ', 'O', ' ']
+  ]
 
-  function output(element, index, array)
-  {
-    document.write("Element at index " + index + " has the value " +
-      element + "<br>")
+  let s = '';
+  for (let j = 0 ; j < 8 ; ++j) {
+    for (let k = 0 ; k < 8 ; ++k)
+      s += checkerboard[j][k] + " "
+
+    s += '\n'
   }
+  console.log(s)
 </script>
