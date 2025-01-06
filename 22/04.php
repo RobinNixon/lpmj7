@@ -1,20 +1,20 @@
 <?php // Example 04: index.php
-  session_start();
   require_once 'header.php';
 
   echo "<div class='center'>Welcome to Robin's Nest,";
 
-  if ($loggedin) echo " $user, you are logged in";
-  else           echo ' please sign up or log in';
+  if ($loggedin) {
+    $user_html_entities = htmlentities($_SESSION['user']);
+    echo " $user_html_entities, you are logged in";
+  } else
+    echo ' please sign up or log in';
+?>
 
-  echo <<<_END
-      </div><br>
+      </div>
     </div>
-    <div data-role="footer">
-      <h4>Web App from <i><a href='https://github.com/RobinNixon/lpmj6'
-      target='_blank'>Learning PHP MySQL & JavaScript</a></i></h4>
-    </div>
+    <h4 id="footer" class="center">Web App from <i>
+      <a href="https://github.com/RobinNixon/lpmj7" target="_blank">
+      Learning PHP MySQL & JavaScript</a>
+    </i></h4>
   </body>
 </html>
-_END;
-?>

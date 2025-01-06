@@ -1,68 +1,62 @@
 <?php // Example 08: profile.php
   require_once 'header.php';
 
-  if (!$loggedin) die("</div></body></html>");
+  if (!$loggedin)
+    die("</div></body></html>");
+  $user = $_SESSION['user'];
 
   echo "<h3>Your Profile</h3>";
 
-  $result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
-    
-  if (isset($_POST['text']))
-  {
-    $text = sanitizeString($_POST['text']);
-    $text = preg_replace('/\s\s+/', ' ', $text);
+  $stmt = $pdo->prepare('SELECT * FROM profiles WHERE user=?');
+  $stmt->execute([$user]);
 
-    if ($result->rowCount())
-         queryMysql("UPDATE profiles SET text='$text' where user='$user'");
-    else queryMysql("INSERT INTO profiles VALUES('$user', '$text')");
-  }
-  else
-  {
-    if ($result->rowCount())
-    {
-      $row  = $result->fetch();
-      $text = stripslashes($row['text']);
+  if (isset($_POST['text'])) {
+    $text = preg_replace('/\s\s+/', ' ', $_POST['text']);
+    $text_html_entities = htmlentities($_POST['text']);
+
+    if ($stmt->rowCount())
+      $stmt2 = $pdo->prepare('UPDATE profiles SET text=:text WHERE user=:user');
+    else
+      $stmt2 = $pdo->prepare('INSERT INTO profiles VALUES(:user, :text)');
+    $stmt2->execute([':text' => $text, ':user' => $user]);
+  } else {
+    if ($stmt->rowCount()) {
+      $row = $stmt->fetch();
+      $text_html_entities = htmlentities($row['text']);
     }
-    else $text = "";
+    else $text_html_entities = "";
   }
 
-  $text = stripslashes(preg_replace('/\s\s+/', ' ', $text));
-
-  if (isset($_FILES['image']['name']))
-  {
+  if (isset($_FILES['image']['name'])) {
     $saveto = "$user.jpg";
     move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
     $typeok = TRUE;
 
-    switch($_FILES['image']['type'])
-    {
-      case "image/gif":   $src = imagecreatefromgif($saveto); break;
-      case "image/jpeg":  // Both regular and progressive jpegs
-      case "image/pjpeg": $src = imagecreatefromjpeg($saveto); break;
-      case "image/png":   $src = imagecreatefrompng($saveto); break;
-      default:            $typeok = FALSE; break;
+    $info = getimagesize($saveto);
+    if ($info) {
+      list($w, $h, $type) = $info;
+      switch ($type) {
+        case IMAGETYPE_GIF:  $src = imagecreatefromgif($saveto); break;
+        case IMAGETYPE_JPEG: $src = imagecreatefromjpeg($saveto); break;
+        case IMAGETYPE_PNG:  $src = imagecreatefrompng($saveto); break;
+        default:             $typeok = FALSE; break;
+      }
     }
+    else
+      $typeok = FALSE;
 
-    if ($typeok)
-    {
-      list($w, $h) = getimagesize($saveto);
-
+    if ($typeok) {
       $max = 100;
       $tw  = $w;
       $th  = $h;
 
-      if ($w > $h && $max < $w)
-      {
+      if ($w > $h && $max < $w) {
         $th = $max / $w * $h;
         $tw = $max;
-      }
-      elseif ($h > $w && $max < $h)
-      {
+      } elseif ($h > $w && $max < $h) {
         $tw = $max / $h * $w;
         $th = $max;
-      }
-      elseif ($max < $w)
-      {
+      } elseif ($max < $w) {
         $tw = $th = $max;
       }
 
@@ -76,18 +70,16 @@
     }
   }
 
-  showProfile($user);
-
-echo <<<_END
-      <form data-ajax='false' method='post'
-        action='profile.php?r=$randstr' enctype='multipart/form-data'>
+  showProfile($user, $pdo);
+?>
+      <form method="post"
+        action="profile.php" enctype="multipart/form-data">
       <h3>Enter or edit your details and/or upload an image</h3>
-      <textarea name='text'>$text</textarea><br>
-      Image: <input type='file' name='image' size='14'>
-      <input type='submit' value='Save Profile'>
+      <textarea
+        name="text" cols="50"><?php echo $text_html_entities; ?></textarea>
+      <p>Image: <input type="file" name="image" size="14"></p>
+      <input type="submit" class="button" value="Save Profile">
       </form>
-    </div><br>
+    </div>
   </body>
 </html>
-_END;
-?>
