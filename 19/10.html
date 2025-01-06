@@ -2,35 +2,37 @@
 <html>
   <head>
     <title>Simple Animation</title>
-    <script src='OSC.js'></script>
+    <script src='functions.js'></script>
     <style>
       #box {
-        position  :absolute;
-        background:orange;
-        border    :1px solid red;
+        position   : absolute;
+        background : orange;
+        border     : 1px solid red;
       }
     </style>
   </head>
   <body>
-     <div id='box'></div>
-     
-     <script>
-       SIZE = LEFT = 0
+    <div id='box'></div>
 
-       setInterval(animate, 30)
+    <script>
+      let size = 0
+      let left = 0
 
-       function animate()
-       {
-         SIZE += 10
-         LEFT += 3
+      setInterval(animate, 30)
 
-         if (SIZE == 200) SIZE = 0
-         if (LEFT == 600) LEFT = 0
+      function animate()
+      {
+        size += 10
+        left += 3
 
-         S('box').width  = SIZE + 'px'
-         S('box').height = SIZE + 'px'
-         S('box').left   = LEFT + 'px'
-       }
-     </script>
+        if (size === 200) size = 0
+        if (left === 600) left = 0
+
+        const b = style('#box')
+        b.width  = size + 'px'
+        b.height = size + 'px'
+        b.left   = left + 'px'
+      }
+    </script>
   </body>
 </html>

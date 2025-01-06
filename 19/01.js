@@ -1,4 +1,4 @@
-function O(i)
+function byId(id)
 {
-  return typeof i == 'object' ? i : document.getElementById(i)
+  return document.getElementById(id)
 }

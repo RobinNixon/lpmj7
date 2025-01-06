@@ -1,4 +1,4 @@
-function S(i)
+function style(selector)
 {
-  return O(i).style
+  return document.querySelector(selector).style
 }
