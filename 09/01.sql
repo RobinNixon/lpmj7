@@ -1,4 +1,4 @@
 CREATE TABLE accounts (
-number INT, balance FLOAT, PRIMARY KEY(number)
-) ENGINE InnoDB;
+ number INT, balance INT, PRIMARY KEY(number)
+ ) ENGINE InnoDB;
 DESCRIBE accounts;
