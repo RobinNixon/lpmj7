@@ -1,4 +1,4 @@
-<?php // authenticate2.php
+<?php // authenticate2-regenerate.php = authenticate2.php with session regeneration from 09.php
   require_once 'login.php';
 
   try
@@ -28,6 +28,7 @@
     if (password_verify($_SERVER['PHP_AUTH_PW'], $pw))
     {
       session_start();
+      session_regenerate_id();
 
       $_SESSION['forename'] = $fn;
       $_SESSION['surname']  = $sn;

@@ -9,5 +9,5 @@
     echo "Welcome back $forename.<br>
           Your full name is $forename $surname.<br>";
   }
-  else echo "Please <a href='authenticate2.php'>Click Here</a> to log in.";
+  else echo "Please <a href='authenticate2.php'>click here</a> to log in.";
 ?>
