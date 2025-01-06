@@ -1,5 +1,5 @@
 <?php
-  $fh = fopen("testfile.txt", 'r+') or die("Failed to open file");
+  $fh   = fopen("testfile.txt", 'r+') or die("Failed to open file");
   $text = fgets($fh);
 
   if (flock($fh, LOCK_EX))
