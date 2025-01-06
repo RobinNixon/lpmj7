@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html> <!-- jsonget.html -->
+  <head>
+    <title>Asynchronous Communication Example</title>
+    <style>
+      body { text-align:center; }
+    </style>
+  </head>
+  <body>
+    <h1 id="header">Loading a web page into a DIV</h1>
+    <div id="info">This sentence will be replaced</div>
+
+    <script>
+      const params = new URLSearchParams({
+        url: "cnet.com",
+        nocache: Math.random() * 1000000
+      })
+      fetch("http://localhost/18/jsonget.php?" + params)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("header").style.backgroundColor = data.color
+          document.getElementById("info").innerHTML = data.html
+        })
+    </script>
+  </body>
+</html>

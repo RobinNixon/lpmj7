@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html> <!-- borderradius.html -->
   <head>
-    <title>CSS3 Border Radius Examples</title>
+    <title>CSS Border Radius Examples</title>
     <style>
       .box {
-        margin-bottom:10px;   
-        font-family  :'Courier New', monospace;
-        font-size    :12pt;
-        text-align   :center;
-        padding      :10px;
-        width        :380px;
-        height       :75px;
-        border       :10px solid #006;
+        margin-bottom : 10px;
+        font-family   : 'Courier New', monospace;
+        font-size     : 1rem;
+        text-align    : center;
+        padding       : 10px;
+        width         : 380px;
+        height        : 75px;
+        border        : 10px solid #006;
       }
       .b1 {
-        -moz-border-radius   :40px;
-        -webkit-border-radius:40px;
-        border-radius        :40px;
+        border-radius : 40px;
       }
       .b2 {
-        border-radius        :40px 40px 20px 20px;
+        border-radius : 40px 40px 20px 20px;
       }
       .b3 {
-        border-top-left-radius            :20px;
-        border-top-right-radius           :40px;
-        border-bottom-left-radius         :60px;
-        border-bottom-right-radius        :80px;
+        border-top-left-radius    : 20px;
+        border-top-right-radius    : 40px;
+        border-bottom-left-radius  : 60px;
+        border-bottom-right-radius : 80px;
       }
       .b4 {
-        border-top-left-radius            :40px 20px;
-        border-top-right-radius           :40px 20px;
-        border-bottom-left-radius         :20px 40px;
-        border-bottom-right-radius        :20px 40px;
+        border-top-left-radius     : 40px 20px;
+        border-top-right-radius    : 40px 20px;
+        border-bottom-left-radius  : 20px 40px;
+        border-bottom-right-radius : n20px 40px;
       }
     </style>
   </head>
   <body>
     <div class='box b1'>
-      border-radius:40px;
+      border-radius : 40px;
     </div>
 
     <div class='box b2'>
-      border-radius:40px 40px 20px 20px;
+      border-radius : 40px 40px 20px 20px;
     </div>
 
     <div class='box b3'>

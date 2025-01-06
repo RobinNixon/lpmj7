@@ -1,4 +1,4 @@
-function C(i)
+function by(selector)
 {
-  return document.getElementsByClassname(i)
-} 
+  return document.querySelectorAll(selector)
+}

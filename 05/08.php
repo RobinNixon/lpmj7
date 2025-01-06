@@ -1,5 +1,10 @@
 <?php
-  require_once("library.php");
-
-  // Your code goes here
+  if (function_exists("array_combine"))
+  {
+    echo "Function exists";
+  }
+  else
+  {
+    echo "Function does not exist - better write our own";
+  }
 ?>

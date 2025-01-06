@@ -1,8 +1,14 @@
-<?php // sessiontest.php
+<?php
+if (password_verify($_SERVER['PHP_AUTH_PW'], $pw))
+{
   session_start();
+  session_regenerate_id();
 
-  if (!isset($_SESSION['count'])) $_SESSION['count'] = 0; 
-  else ++$_SESSION['count']; 
+  $_SESSION['forename'] = $fn;
+  $_SESSION['surname']  = $sn;
 
-  echo $_SESSION['count'];
+  echo htmlspecialchars("$fn $sn : Hi $fn,
+    you are now logged in as '$un'");
+  die ("<p><a href='continue.php'>Click here to continue</a></p>");
+}
 ?>

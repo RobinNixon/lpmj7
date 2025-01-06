@@ -13,14 +13,15 @@
   $query  = "SELECT * FROM cats";
   $result = $pdo->query($query);
 
-  echo "<table><tr> <th>Id</th> <th>Family</th><th>Name</th><th>Age</th></tr>";
+  echo "<table><tr> <th>Id</th> <th>Family</th>";
+  echo "<th>Name</th><th>Age</th></tr>";
 
   while ($row = $result->fetch(PDO::FETCH_NUM))
   {
-  	echo "<tr>";
+    echo "<tr>";
     for ($k = 0 ; $k < 4 ; ++$k)
       echo "<td>" . htmlspecialchars($row[$k]) . "</td>";
-  	echo "</tr>";
+    echo "</tr>";
   }
 
   echo "</table>";

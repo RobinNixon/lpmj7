@@ -1,13 +1,17 @@
 <?php
-  class Example
-  {
-    var $name = "Michael";   // Same as public but deprecated
-    public $age = 23;        // Public property
-    protected $usercount;    // Protected property
+  $temp = new Test();
 
-    private function admin() // Private method
+  echo "Test A: " . Test::$static_property . "<br>";
+  echo "Test B: " . $temp->get_sp()        . "<br>";
+  echo "Test C: " . $temp->static_property . "<br>";
+
+  class Test
+  {
+    static $static_property = "I'm static";
+
+    function get_sp()
     {
-      // Admin code goes here
+       return self::$static_property;
     }
   }
 ?>

@@ -1,80 +1,66 @@
 <?php // Example 02: header.php
-  if (session_status() !== PHP_SESSION_ACTIVE)
-    session_start();
-
-echo <<<_INIT
-<!DOCTYPE html> 
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'> 
-    <link rel='stylesheet' href='jquery.mobile-1.4.5.min.css'>
-    <link rel='stylesheet' href='styles.css' type='text/css'>
-    <script src='javascript.js'></script>
-    <script src='jquery-2.2.4.min.js'></script>
-    <script src='jquery.mobile-1.4.5.min.js'></script>
-
-_INIT;
-
+  session_start();
   require_once 'functions.php';
 
   $userstr = 'Welcome Guest';
-  $randstr = substr(md5(rand()), 0, 7);
 
-  if (isset($_SESSION['user']))
-  {
-    $user     = $_SESSION['user'];
+  if (isset($_SESSION['user'])) {
+    $user_html_entities = htmlentities($_SESSION['user']);
     $loggedin = TRUE;
-    $userstr  = "Logged in as: $user";
-  }
-  else $loggedin = FALSE;
-
-echo <<<_MAIN
-    <title>Robin's Nest: $userstr</title>
-  </head>
-  <body>
-    <div data-role='page'>
-      <div data-role='header'>
-        <div id='logo' class='center'>R<img id='robin' src='robin.gif'>bin's Nest</div>
-        <div class='username'>$userstr</div>
-      </div>
-      <div data-role='content'>
-
-_MAIN;
-
-  if ($loggedin)
-  {
-echo <<<_LOGGEDIN
-        <div class='center'>
-          <a data-role='button' data-inline='true' data-icon='home'
-            data-transition="slide" href='members.php?view=$user&r=$randstr'>Home</a>
-          <a data-role='button' data-inline='true' data-icon='user'
-            data-transition="slide" href='members.php?r=$randstr'>Members</a>
-          <a data-role='button' data-inline='true' data-icon='heart'
-            data-transition="slide" href='friends.php?r=$randstr'>Friends</a><br>
-          <a data-role='button' data-inline='true' data-icon='mail'
-            data-transition="slide" href='messages.php?r=$randstr'>Messages</a>
-          <a data-role='button' data-inline='true' data-icon='edit'
-            data-transition="slide" href='profile.php?r=$randstr'>Edit Profile</a>
-          <a data-role='button' data-inline='true' data-icon='action'
-            data-transition="slide" href='logout.php?r=$randstr'>Log out</a>
-        </div>
-        
-_LOGGEDIN;
+    $userstr  = "Logged in as: $user_html_entities";
   }
   else
-  {
-echo <<<_GUEST
-        <div class='center'>
-          <a data-role='button' data-inline='true' data-icon='home'
-            data-transition='slide' href='index.php?r=$randstr''>Home</a>
-          <a data-role='button' data-inline='true' data-icon='plus'
-            data-transition="slide" href='signup.php?r=$randstr''>Sign Up</a>
-          <a data-role='button' data-inline='true' data-icon='check'
-            data-transition="slide" href='login.php?r=$randstr''>Log In</a>
+    $loggedin = FALSE;
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="styles.css">
+    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Robin's Nest: <?php echo $userstr; ?></title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <div id="logo"
+          class="center">R<img id="robin" src="robin.gif">bin's Nest</div>
+        <div class="username"><?php echo $userstr; ?></div>
+      </div>
+      <div class="content">
+
+<?php
+  if ($loggedin) {
+?>
+        <div class="center">
+          <a class="button" 
+            href="members.php?view=<?php echo $user_html_entities; ?>">
+            <i class="bi-house-door-fill"></i> Home</a>
+          <a class="button" href="members.php">
+            <i class="bi-person-fill"></i> Members</a>
+          <a class="button" href="friends.php">
+            <i class="bi-heart-fill"></i> Friends</a><br>
+          <a class="button" href="messages.php">
+            <i class="bi-envelope-fill"></i> Messages</a>
+          <a class="button" href="profile.php">
+            <i class="bi-pencil-fill"></i> Edit Profile</a>
+          <a class="button" href="logout.php">
+            <i class="bi-door-closed-fill"></i> Log out</a>
         </div>
-        <p class='info'>(You must be logged in to use this app)</p>
-        
-_GUEST;
+<?php        
+  } else {
+?>
+        <div class="center">
+          <a class="button" href="index.php">
+            <i class="bi-house-door-fill"></i> Home</a>
+          <a class="button" href="signup.php">
+            <i class="bi-plus-circle-fill"></i> Sign Up</a>
+          <a class="button" href="login.php">
+            <i class="bi-check-circle-fill"></i> Log In</a>
+        </div>
+        <p class="info">(You must be logged in to use this app)</p>
+<?php
   }
 ?>

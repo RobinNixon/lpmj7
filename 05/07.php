@@ -1,7 +1,5 @@
 <?php
-  include_once("library.php");
+  require_once "library.php";
 
   // Your code goes here
 ?>
-
-

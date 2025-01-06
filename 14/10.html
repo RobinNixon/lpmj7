@@ -1,9 +1,15 @@
 <script>
-  string = "The quick brown fox jumps over the lazy dog"
+  onerror = errorHandler
+  console.lol("Welcome to this website") // Deliberate error
 
-  with (string)
+  function errorHandler(message, url, line)
   {
-    document.write("The string is " + length + " characters<br>")
-    document.write("In upper case it's: " + toUpperCase())
+    out  = "Sorry, an error was encountered.\n\n";
+    out += "Error: " + message + "\n";
+    out += "URL: "   + url     + "\n";
+    out += "Line: "  + line    + "\n\n";
+    out += "Click OK to continue.\n\n";
+    alert(out);
+    return true;
   }
 </script>

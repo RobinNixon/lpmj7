@@ -1,9 +1,16 @@
 <script>
-  numbers = []
-  numbers.push("One")
-  numbers.push("Two")
-  numbers.push("Three")
+  function showUser()
+  {
+    console.log("Forename: " + this.forename)
+    console.log("Username: " + this.username)
+    console.log("Timezone: " + this.timezone)
+  }
 
-  for (j = 0 ; j < numbers.length ; ++j)
-    document.write("Element " + j + " = " + numbers[j] + "<br>")
+  function User(forename, username, timezone)
+  {
+    this.forename = forename
+    this.username = username
+    this.timezone = timezone
+    this.showUser = showUser
+  }
 </script>

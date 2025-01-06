@@ -1,11 +1,31 @@
 <?php
-  User::pwd_string();
+  $object           = new Subscriber;
+  $object->name     = "Fred";
+  $object->password = "pword";
+  $object->phone    = "012 345 6789";
+  $object->email    = "fred@bloggs.com";
+  $object->display();
 
   class User
   {
-    static function pwd_string()
+    public $name, $password;
+
+    function save_user()
     {
-      echo "Please enter your password";
+      echo "Save User code goes here";
+    }
+  }
+
+  class Subscriber extends User
+  {
+    public $phone, $email;
+
+    function display()
+    {
+      echo "Name:  " . $this->name     . "<br>";
+      echo "Pass:  " . $this->password . "<br>";
+      echo "Phone: " . $this->phone    . "<br>";
+      echo "Email: " . $this->email;
     }
   }
 ?>

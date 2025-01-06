@@ -1,75 +1,61 @@
 <?php // Example 05: signup.php
   require_once 'header.php';
 
-echo <<<_END
-  <script>
-    function checkUser(user)
-    {
-      if (user.value == '')
-      {
-        $('#used').html('&nbsp;')
-        return
-      }
+  $error = $user = "";
+  if (isset($_SESSION['user']))
+    destroySession();
 
-      $.post
-      (
-        'checkuser.php',
-        { user : user.value },
-        function(data)
-        {
-          $('#used').html(data)
-        }
-      )
-    }
-  </script>  
-_END;
-
-  $error = $user = $pass = "";
-  if (isset($_SESSION['user'])) destroySession();
-
-  if (isset($_POST['user']))
-  {
-    $user = sanitizeString($_POST['user']);
-    $pass = sanitizeString($_POST['pass']);
-
-    if ($user == "" || $pass == "")
-      $error = 'Not all fields were entered<br><br>';
-    else
-    {
-      $result = queryMysql("SELECT * FROM members WHERE user='$user'");
-
-      if ($result->rowCount())
+  if (isset($_POST['user'])) {
+    $user = $_POST['user'];
+    if ($_POST['user'] === "" || $_POST['pass'] === "")
+      $error = 'Not all fields were entered';
+    else {
+      $stmt = $pdo->prepare('SELECT * FROM members WHERE user=?');
+      $stmt->execute([$user]);
+      if ($stmt->rowCount())
         $error = 'That username already exists<br><br>';
-      else
-      {
-        queryMysql("INSERT INTO members VALUES('$user', '$pass')");
+      else {
+        $stmt = $pdo->prepare('INSERT INTO members VALUES(?, ?)');
+        $stmt->execute([$user, password_hash($_POST['pass'], PASSWORD_DEFAULT)]);
         die('<h4>Account created</h4>Please Log in.</div></body></html>');
       }
     }
   }
-
-echo <<<_END
-      <form method='post' action='signup.php?r=$randstr'>$error
-      <div data-role='fieldcontain'>
-        <label></label>
-        Please enter your details to sign up
-      </div>
-      <div data-role='fieldcontain'>
+  $error_html_entities = htmlentities($error);
+  $user_html_entities = htmlentities($user);
+?>
+      <form method="post" action="signup.php">
+      <p class="error">
+        <?php echo $error_html_entities; ?>
+      </p>
+      <p>Please enter your details to sign up</p>
+      <p>
         <label>Username</label>
-        <input type='text' maxlength='16' name='user' value='$user'
-          onBlur='checkUser(this)'>
-        <label></label><div id='used'>&nbsp;</div>
-      </div>
-      <div data-role='fieldcontain'>
+        <input type="text" maxlength="16" name="user" id="username"
+          value="<?php echo $user_html_entities; ?>"><br>
+        <label></label><span id="used">&nbsp;</span>
+      </p>
+      <p>
         <label>Password</label>
-        <input type='text' maxlength='16' name='pass' value='$pass'>
-      </div>
-      <div data-role='fieldcontain'>
+        <input type="text" name="pass">
+      </p>
+      <p>
         <label></label>
-        <input data-transition='slide' type='submit' value='Sign Up'>
-      </div>
+        <input type="submit" value="Sign Up">
+      </p>
+      </form>
+      <script>
+        const field = byId('username');
+        field.onblur = () => {
+          if (field.value === '')
+            return
+          const data = new FormData()
+          data.set('user', field.value)
+          fetch('checkuser.php', { method: 'post', body: data})
+            .then(response => response.text())
+            .then(text => byId('used').innerHTML = text)
+        }
+      </script>  
     </div>
   </body>
 </html>
-_END;
-?>

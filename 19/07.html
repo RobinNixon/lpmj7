@@ -2,16 +2,15 @@
 <html>
   <head>
     <title>Non-inline JavaScript</title>
-    <script src='OSC.js'></script>
+    <script src='functions.js'></script>
   </head>
   <body>
     <img id='object' src='apple.png'>
 
     <script>
-      O('object').onmouseover = function() { this.src = 'orange.png' }
-      O('object').onmouseout  = function() { this.src = 'apple.png'  }
-    </script> 
+      const o = byId('object')
+      o.onmouseover = function() { this.src = 'orange.png' }
+      o.onmouseout  = function() { this.src = 'apple.png'  }
+    </script>
   </body>
 </html>
-
-

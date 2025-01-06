@@ -1,8 +1,11 @@
 <?php
-  $object1       = new User();
-  $object1->name = "Alice";
+  User::pwd_string();
 
-  echo $object1->name;
-
-  class User {}
+  class User
+  {
+    static function pwd_string()
+    {
+      echo "Please enter your password";
+    }
+  }
 ?>

@@ -1,10 +1,14 @@
 <?php
-  if (function_exists("array_combine"))
+  class User
   {
-    echo "Function exists";
+    public $name, $password;
+
+    function save_user()
+    {
+      echo "Save User code goes here";
+    }
   }
-  else
-  {
-    echo "Function does not exist - better write our own";
-  }
+
+  $object = new User;
+  print_r($object);
 ?>

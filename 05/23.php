@@ -1,31 +1,28 @@
 <?php
-  $object           = new Subscriber;
-  $object->name     = "Fred";
-  $object->password = "pword";
-  $object->phone    = "012 345 6789";
-  $object->email    = "fred@bloggs.com";
-  $object->display();
-  
-  class User
-  {
-    public $name, $password;
+  $object = new Tiger();
 
-    function save_user()
+  echo "Tigers have...<br>";
+  echo "Fur: " . $object->fur . "<br>";
+  echo "Stripes: " . $object->stripes;
+
+  class Wildcat
+  {
+    public $fur; // Wildcats have fur
+
+    function __construct()
     {
-      echo "Save User code goes here";
+      $this->fur = "TRUE";
     }
   }
 
-  class Subscriber extends User
+  class Tiger extends Wildcat
   {
-    public $phone, $email;
+    public $stripes; // Tigers have stripes
 
-    function display()
+    function __construct()
     {
-      echo "Name: "  . $this->name     . "<br>";
-      echo "Pass: "  . $this->password . "<br>";
-      echo "Phone: " . $this->phone    . "<br>";
-      echo "Email: " . $this->email;
+      parent::__construct(); // Call parent constructor first
+      $this->stripes = "TRUE";
     }
   }
 ?>

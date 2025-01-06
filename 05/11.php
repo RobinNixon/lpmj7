@@ -1,20 +1,14 @@
 <?php
-  $object = new User;
-  print_r($object); echo "<br>";
+  $object1       = new User();
+  $object1->name = "Alice";
+  $object2       = $object1;
+  $object2->name = "Amy";
 
-  $object->name = "Joe";
-  $object->password = "mypass";
-  print_r($object); echo "<br>";
-
-  $object->save_user();
+  echo "object1 name = " . $object1->name . "<br>";
+  echo "object2 name = " . $object2->name;
 
   class User
   {
-    public $name, $password;
-
-    function save_user()
-    {
-  	  echo "Save User code goes here";
-    }
+    public $name;
   }
 ?>

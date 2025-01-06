@@ -1,14 +1,17 @@
 <script>
-  haystack     = new Array()
-  haystack[17] = "Needle"
+  const haystack = new Array()
+  haystack[4]    = "Needle"
+  haystack[11]   = "Needle"
+  haystack[17]   = "Needle"
 
-  for (j = 0 ; j < 20 ; ++j)
+  for (let j = 0 ; j < 20 ; ++j)
   {
-    if (haystack[j] == "Needle")
+    if (haystack[j] === "Needle")
     {
-      document.write("<br>- Found at location " + j)
-      break
+      console.log("- Found at location " + j)
+      continue
     }
-    else document.write(j + ", ")
+
+    console.log(j + ", ")
   }
 </script>

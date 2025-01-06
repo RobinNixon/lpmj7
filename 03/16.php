@@ -1,9 +1,9 @@
 <?php
   $temp = "The date is ";
-  echo longdate($temp, time());
+  echo $temp . longdate(time());
 
-  function longdate($text, $timestamp)
+  function longdate($timestamp)
   {
-    return $text . date("l F jS Y", $timestamp);
+    return date("l F jS Y", $timestamp);
   }
 ?>

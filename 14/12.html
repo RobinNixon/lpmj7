@@ -1,10 +1,7 @@
 <script>
-  try
-  {
-    request = new XMLHTTPRequest()
-  }
-  catch(err)
-  {
-    // Use a different method to create an XML HTTP Request object
-  }
+  if      (page === "Home")  console.log("You selected Home")
+  else if (page === "About") console.log("You selected About")
+  else if (page === "News")  console.log("You selected News")
+  else if (page === "Login") console.log("You selected Login")
+  else if (page === "Links") console.log("You selected Links")
 </script>

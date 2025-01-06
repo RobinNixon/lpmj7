@@ -1,17 +1,26 @@
 <?php
-  $temp = new Test();
+  $object = new Son;
+  $object->test();
+  $object->test2();
 
-  echo "Test A: " . Test::$static_property . "<br>";
-  echo "Test B: " . $temp->get_sp()        . "<br>";
-  echo "Test C: " . $temp->static_property . "<br>";
-
-  class Test
+  class Dad
   {
-    static $static_property = "I'm static";
-    function get_sp()
-
+    function test()
     {
-      return self::$static_property;
+      echo "[Class Dad] I am your Father<br>";
+    }
+  }
+
+  class Son extends Dad
+  {
+    function test()
+    {
+      echo "[Class Son] I am Luke<br>";
+    }
+
+    function test2()
+    {
+      parent::test();
     }
   }
 ?>

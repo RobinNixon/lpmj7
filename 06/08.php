@@ -7,11 +7,12 @@
   while (list($item, $description) = myEach($paper))
     echo "$item: $description<br>";
 
-  function myEach(&$array) // Replacement for the deprecated each function
+  function myEach(&$array) // Replacement for deprecated 'each' function
   {
     $key    = key($array);
     $result = ($key === null) ? false :
-              [$key, current($array), 'key', 'value' => current($array)];
+              [$key, current($array), 'key', 'value' =>
+                current($array)];
     next($array);
     return $result;
   }

@@ -4,95 +4,123 @@
     <title>An Example Form</title>
     <style>
       .signup {
-        border:1px solid #999999;
-        font:  normal 14px helvetica;
+        border: 1px solid #999999;
+        font: normal 14px helvetica;
         color: #444444;
+        background-color: #eeeeee;
+        border-spacing: 5px;
+      }
+      .signup th, .signup td {
+        padding: 2px;
       }
     </style>
-
+  </head>
+  <body>
+    <form method="post" action="" id="form">
+    <table class="signup">
+      <th colspan="2" align="center">Signup Form</th>
+      <tr><td>Forename</td>
+        <td><input type="text" maxlength="32" name="forename" required></td></tr>
+      <tr><td>Surname</td>
+        <td><input type="text" maxlength="32" name="surname" required></td></tr>
+      <tr><td>Username</td>
+        <td><input type="text" maxlength="16" name="username" required></td></tr>
+      <tr><td>Password</td>
+        <td><input type="password" name="password" required></td></tr>
+      <tr><td>Age</td>
+        <td><input type="number" max="110" name="age" required></td></tr>
+      <tr><td>Email</td>
+        <td><input type="email" maxlength="64" name="email" required></td></tr>
+      <tr><td colspan="2" align="center"><input type="submit"
+        value="Signup"></td></tr>
+    </table>
+    </form>
     <script>
-      function validate(form)
-      {
-        fail  = validateForename(form.forename.value)
-        fail += validateSurname(form.surname.value)
-        fail += validateUsername(form.username.value)
-        fail += validatePassword(form.password.value)
-        fail += validateAge(form.age.value)
-        fail += validateEmail(form.email.value)
-
-        if   (fail == "")   return true
-        else { alert(fail); return false }
-      }
-
+      // validate functions from 02.js
       function validateForename(field)
       {
-        return (field == "") ? "No Forename was entered.\n" : ""
+        return (field === "") ? "No Forename was entered." : ""
       }
-      
+
       function validateSurname(field)
       {
-        return (field == "") ? "No Surname was entered.\n" : ""
+        return (field === "") ? "No Surname was entered." : ""
       }
 
       function validateUsername(field)
       {
-        if (field == "") return "No Username was entered.\n"
+        if (field == "")
+          return "No Username was entered."
         else if (field.length < 5)
-          return "Usernames must be at least 5 characters.\n"
+          return "Usernames must be at least 5 characters."
         else if (/[^a-zA-Z0-9_-]/.test(field))
-          return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames.\n"
+          return "Only a-z, A-Z, 0-9, - and _ allowed in Usernames."
         return ""
       }
 
       function validatePassword(field)
       {
-        if (field == "") return "No Password was entered.\n"
+        if (field == "")
+          return "No Password was entered."
         else if (field.length < 6)
-          return "Passwords must be at least 6 characters.\n"
-        else if (! /[a-z]/.test(field) ||
-                 ! /[A-Z]/.test(field) ||
-                 ! /[0-9]/.test(field))
-          return "Passwords require one each of a-z, A-Z and 0-9.\n"
+          return "Passwords must be at least 6 characters."
+        else if (!/[a-z]/.test(field) || !/[A-Z]/.test(field) ||
+                 !/[0-9]/.test(field))
+          return "Passwords require one each of a-z, A-Z and 0-9."
         return ""
       }
 
       function validateAge(field)
       {
-        if (isNaN(field)) return "No Age was entered.\\n"
+        if (field == "" || isNaN(field))
+          return "No Age was entered."
         else if (field < 18 || field > 110)
-          return "Age must be between 18 and 110.\n"
+          return "Age must be between 18 and 110."
         return ""
       }
 
       function validateEmail(field)
       {
-        if (field == "") return "No Email was entered.\n"
-          else if (!((field.indexOf(".") > 0) &&
-                     (field.indexOf("@") > 0)) ||
-                     /[^a-zA-Z0-9.@_-]/.test(field))
-            return "The Email address is invalid.\n"
-        return ""
+        return (field === "") ? "No Email was entered." : ""
       }
+
+      function validateFields(form)
+      {
+        const errors = []
+        const elements = {}
+        let error = ''
+
+        for (let element of form.elements)
+          elements[element.name] = element.value.trim()
+
+        error = validateForename(elements.forename)
+        if (error) errors.push({field: 'forename', message: error})
+        error = validateSurname(elements.surname)
+        if (error) errors.push({field: 'surname', message: error})
+        error = validateUsername(elements.username)
+        if (error) errors.push({field: 'username', message: error})
+        error = validatePassword(elements.password)
+        if (error) errors.push({field: 'password', message: error})
+        error = validateAge(elements.age)
+        if (error) errors.push({field: 'age', message: error})
+        error = validateEmail(elements.email)
+        if (error) errors.push({field: 'email', message: error})
+        return errors
+      }
+
+      const validate = function(event)
+      {
+        const errors = validateFields(event.target)
+        if (errors.length) {
+          const alerts = []
+          for (error of errors) {
+            alerts.push(error.field + ": " + error.message)
+          }
+          alert(alerts.join("\n"))
+          event.preventDefault()
+        }
+      }
+      document.getElementById('form').addEventListener('submit', validate)
     </script>
-  </head>
-  <body>
-    <table class="signup" border="0" cellpadding="2" cellspacing="5" bgcolor="#eeeeee">
-      <th colspan="2" align="center">Signup Form</th>
-      <form method="post" action="adduser.php" onsubmit="return validate(this)">
-        <tr><td>Forename</td>
-          <td><input type="text" maxlength="32" name="forename"></td></tr>
-        <tr><td>Surname</td>
-          <td><input type="text" maxlength="32" name="surname"></td></tr>
-        <tr><td>Username</td>
-          <td><input type="text" maxlength="16" name="username"></td></tr>
-        <tr><td>Password</td>
-          <td><input type="text" maxlength="12" name="password"></td></tr>
-        <tr><td>Age</td>
-          <td><input type="text" maxlength="3"  name="age"></td></tr>
-        <tr><td>Email</td>
-          <td><input type="text" maxlength="64" name="email"></td></tr>
-        <tr><td colspan="2" align="center"><input type="submit" value="Signup"></td></tr>
-      </form>
-    </table>
   </body>
 </html>
