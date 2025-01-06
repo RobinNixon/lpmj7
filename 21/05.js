@@ -1,12 +1,10 @@
-const http = require('http')
+import http from 'http'
 
-const server = http.createServer((request, response) =>
-{
+const server = http.createServer(async (request, response) => {
   let status = 200
   let output = '404 Not Found'
   
-  switch(request.url)
-  {
+  switch (request.url) {
     case '/hello.html': output = 'Hello there'
                         break
     case '/bye.html':   output = 'Goodbye'
@@ -14,9 +12,9 @@ const server = http.createServer((request, response) =>
     default:            status = 404
   }
 
-  response.writeHead(status, {'Content-Type': 'text/html'})
+  response.writeHead(status, { 'Content-Type': 'text/html' })
   response.end(output)
 })
 
-console.log('Server running...')
-server.listen(80)
+const port = 8000
+server.listen(port, () => console.log('Server listening on port ' + port))
