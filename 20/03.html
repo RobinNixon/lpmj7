@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Using a function and a class</title>
+
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+
+    <script type="text/babel">
+      function One() {
+        return <p>By Jeeves, it works!</p>
+      }
+
+      class Two extends React.Component
+      {
+        render()
+        {
+          return <p>And this, by Jove!</p>
+        }
+      }
+      
+      ReactDOM.render(<One />, document.getElementById('div1'))
+      ReactDOM.render(<Two />, document.getElementById('div2'))
+    </script>
+  </head>
+  <body>
+    <div id="div1" style="font-family:monospace"></div>
+    <div id="div2" style="font-family:monospace"></div>
+  </body>
+</html>

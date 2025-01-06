@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>Using textarea</title>
 
-    <script src='react.development.js'    ></script>
-    <script src='react-dom.development.js'></script>
-    <script src="babel.min.js">            </script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
 
     <script type="text/babel">
       class GetText extends React.Component
@@ -45,12 +45,7 @@
         }
       }
 
-      doRender(<GetText />, 'display')
-
-      function doRender(elem, dest)
-      {
-        ReactDOM.render(elem, document.getElementById(dest))
-      }
+      ReactDOM.render(<GetText />, document.getElementById('display'))
     </script>
   </head>
   <body>

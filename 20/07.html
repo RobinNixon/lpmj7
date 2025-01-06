@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>JSX conditional statement</title>
 
-    <script src='react.development.js'    ></script>
-    <script src='react-dom.development.js'></script>
-    <script src="babel.min.js">            </script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
 
     <script type="text/babel">
       class Setup extends React.Component
@@ -31,12 +31,7 @@
         }
       }
 
-      doRender(<Setup />, 'display')
-
-      function doRender(elem, dest)
-      {
-        ReactDOM.render(elem, document.getElementById(dest))
-      }
+      ReactDOM.render(<Setup />, document.getElementById('display'))
     </script>
   </head>
   <body>
