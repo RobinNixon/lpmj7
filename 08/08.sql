@@ -3,7 +3,7 @@ INSERT INTO classics(author, title, type, year)
 INSERT INTO classics(author, title, type, year)
  VALUES('Jane Austen','Pride and Prejudice','Fiction','1811');
 INSERT INTO classics(author, title, type, year)
- VALUES('Charles Darwin','The Origin of Species','Non-Fiction','1856');
+ VALUES('Charles Darwin','The Origin of Species','Nonfiction','1856');
 INSERT INTO classics(author, title, type, year)
  VALUES('Charles Dickens','The Old Curiosity Shop','Fiction','1841');
 INSERT INTO classics(author, title, type, year)

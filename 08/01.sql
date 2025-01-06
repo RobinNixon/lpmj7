@@ -1,1 +1,1 @@
-meaningless gibberish to mysql \c
+meaningless gibberish \c
