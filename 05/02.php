@@ -8,5 +8,5 @@
     return $n1 . ' ' . $n2 . ' ' . $n3;
   }
 
-  echo fix_names('WILLIAM', 'henry', 'gatES');
+  echo fix_names('WILLIAM', 'henry', 'gatES');
 ?>

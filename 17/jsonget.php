@@ -5,7 +5,7 @@
     $data = [
       'html' => file_get_contents('http://' . $_GET['url']),
       'color' => 'blue',
-    ];
+    ];
     echo json_encode($data);
   }
 ?>
